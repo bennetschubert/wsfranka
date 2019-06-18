@@ -10,7 +10,10 @@ function Franka(ip){
 		execution: '/desk/api/execution', //POST
 		values: '/desk/api/modbus/values', //WS
 		timelines: '/desk/api/timelines', //WS
+		robot: '/desk/api/robot', //WS
 	}
+
+	const Actions = Franka.Actions
 
 	var host = ip
 	var client = null
@@ -58,12 +61,49 @@ function Franka(ip){
 		return new ws(url, null, {headers: client.defaults.headers.common})
 	}
 
+	function executeTimeline(timeline){
+		return client.request(PATHS.execution,{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			},
+			data: `id=${timeline}`
+		})
+		.then(response=>{
+			return true
+		})
+		.catch(e=>{
+			console.error(e)
+			throw new Error(`failed to execute timeline ${timeline}`)
+		})
+	}
+
+	function executeRobotAction(action){
+		var actionString = Actions[action]
+		if(!actionString) return Promise.reject(new Error(`unknow action ${action}`))
+		var actionPath = `${PATHS.robot}/${actionString}`
+		return client.post(actionPath)
+		.then(response=>{
+			return true
+		})
+		.catch(e=>{
+			console.error(e)
+			throw new Error(`failed to execute robot action ${action}`)
+		})
+	}
+
 	return {
 		setToken: setToken.bind(this),
 		connect: connect.bind(this),
-		subscribe: subscribe.bind(this)
+		subscribe: subscribe.bind(this),
+		executeTimeline: executeTimeline.bind(this),
+		executeRobotAction: executeRobotAction.bind(this),
 	}
+}
 
+Franka.Actions = {
+	"open-brakes": 'open-brakes',
+	"close-brakes": 'close-brakes'
 }
 
 module.exports = Franka
