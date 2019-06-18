@@ -26,10 +26,10 @@ function generateHash(input){
 module.exports = {
 	//returns a js object representation of the request body
 	generateAuthBody: function(user, password){
-		var passwordString = `${user}#${password}@franka`
+		var passwordString = `${password}#${user}@franka`
 		var passwordHash = generateHash(passwordString) 
 		return {
-			user: user,
+			login: user,
 			password: passwordHash
 		}
 	}

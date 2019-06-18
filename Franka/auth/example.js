@@ -1,5 +1,5 @@
 #!/usr/local/bin/node
-const auth = require('./auth')
+const auth = require('./index.js')
 
 var user = process.argv[2] || ''
 var password = process.argv[3] || ''
