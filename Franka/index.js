@@ -55,7 +55,6 @@ function Franka(ip){
 		var path = PATHS[topic]
 		if(!path) throw new Error(`topic not found ${topic}`)
 		var url = getWsUrl(path)
-		console.log(client.defaults.headers.common)
 		return new ws(url, null, {headers: client.defaults.headers.common})
 	}
 
