@@ -1,0 +1,23 @@
+{
+	"credentials": {
+		"user": "web_frontent_user",
+		"password": "web_frontent_password"
+	},
+	"mappings": [
+		{"bit": 17, "action": "task", "taskid": "grundstellung"},
+		{"bit": 18, "action": "task", "taskid": "schraube_m8x45_greifen"},
+		{"bit": 19, "action": "task", "taskid": "schraube_m8x40_greifen"},
+		{"bit": 20, "action": "task", "taskid": "schraube_m8x35_greifen"},
+		{"bit": 21, "action": "task", "taskid": "spannscheibe_-_mutter"},
+		{"bit": 22, "action": "task", "taskid": "mutter_-_spannscheibe"},
+		{"bit": 23, "action": "task", "taskid": "spannscheibe_nach_magazin_1"},
+		{"bit": 24, "action": "task", "taskid": "spannscheibe_nach_magazin_2"},
+		{"bit": 25, "action": "task", "taskid": "spannscheibe_nach_magazin_3"},
+		{"bit": 26, "action": "task", "taskid": "spannscheibe_nach_magazin_4"},
+		{"bit": 27, "action": "task", "taskid": "spannscheibe_nach_magazin_5"},
+		{"bit": 28, "action": "task", "taskid": "spannscheibe_nach_magazin_6"},
+		{"bit": 29, "action": "special", "taskid": "unlock"},
+		{"bit": 30, "action": "special", "taskid": "lock"},
+		{"bit": 31, "action": "info", "taskid": "ready"}
+	]
+}
