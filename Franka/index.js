@@ -92,11 +92,11 @@ function Franka(ip){
 		})
 	}
 
-	lock(){
+	function lock(){
 		return executeRobotAction(Franka.Actions['close-brakes'])
 	}
 
-	unlock(){
+	function unlock(){
 		return executeRobotAction(Franka.Actions['open-brakes'])
 	}
 
@@ -106,6 +106,8 @@ function Franka(ip){
 		subscribe: subscribe.bind(this),
 		executeTimeline: executeTimeline.bind(this),
 		executeRobotAction: executeRobotAction.bind(this),
+		lock: lock.bind(this),
+		unlock: unlock.bind(this)
 	}
 }
 
