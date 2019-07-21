@@ -100,12 +100,29 @@ function Franka(ip){
 		return executeRobotAction(Franka.Actions['open-brakes'])
 	}
 
+	function listTimelines(){
+		function formatTimeline(timeline){
+			return {
+				id: timeline.id,
+				name: timeline.name
+			}
+		}
+
+		return new Promise((resolve, reject)=>{
+			subscribe('timelines')
+			.on('message', (timelines)=>
+				resolve(timelines.map(formatTimeline))
+			)
+		})
+	}
+
 	return {
 		setToken: setToken.bind(this),
 		connect: connect.bind(this),
 		subscribe: subscribe.bind(this),
 		executeTimeline: executeTimeline.bind(this),
 		executeRobotAction: executeRobotAction.bind(this),
+		listTimelines: listTimelines.bind(this),
 		lock: lock.bind(this),
 		unlock: unlock.bind(this)
 	}

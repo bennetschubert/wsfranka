@@ -34,7 +34,17 @@ franka.unlock()
 ```
 
 ## List available timelines
-Still to be implemented
+``` node
+franka.listTimelines().then(console.log)
+/* Output:
+[
+	{id: 'timeline_1', name: 'Timeline 1'},
+	{id: 'second_timeline', name: Second Timeline},
+	...
+	{id: 'last_timeline', name: 'Last Timeline'}
+]
+*/
+```
 
 ## Executing timelines
 __Before executing any timeline you will have unlock the robot.__
