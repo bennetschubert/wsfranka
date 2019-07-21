@@ -92,6 +92,14 @@ function Franka(ip){
 		})
 	}
 
+	lock(){
+		return executeRobotAction(Franka.Actions['close-brakes'])
+	}
+
+	unlock(){
+		return executeRobotAction(Franka.Actions['open-brakes'])
+	}
+
 	return {
 		setToken: setToken.bind(this),
 		connect: connect.bind(this),

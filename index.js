@@ -10,9 +10,9 @@ var franka = new Franka(host)
 franka.connect(credentials.user, credentials.password)
 .then(()=>{
 	franka.subscribe('values').on('message', onValuesReceived)
-	franka.executeRobotAction(Franka.Actions['open-brakes'])
+	franka.unlock()
 	franka.executeTimeline('test_schnittstelle')
-	franka.executeRobotAction(Franka.Actions['close-brakes'])
+	franka.lock()
 })
 .catch(e=>{
 	console.error(e)
