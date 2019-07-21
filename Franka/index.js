@@ -2,7 +2,8 @@ const ws = require('ws')
 const axios = require('axios')
 const auth = require('./auth')
 
-const REQUEST_TIMEOUT = 2000 //in ms
+const CONNECT_TIMEOUT = 2000 //in ms
+const REQUEST_TIMEOUT = 10000 //in ms
 
 function Franka(ip){
 	const PATHS = {
@@ -34,15 +35,18 @@ function Franka(ip){
 			method: 'post',
 			url: PATHS.authenticate,
 			data: data,
-			credentials: true
+			credentials: true,
+			timeout: CONNECT_TIMEOUT
 		})
 		.then(response=>{
 			setToken(response.data)
 			return true
 		})
 		.catch(e=>{
+			if(e.code == 'ECONNREFUSED') throw new Error("the robot did refuse the connection, recheck host setting")
+			if(e.code == 'ECONNABORTED') throw new Error("the connection took to long, check network/host settings ")
 			setToken(null)
-			throw new Error('Authentication failed')
+			throw new Error('connection failed: ' +  e.code + ' ' + e.message)
 		})
 	}
 
