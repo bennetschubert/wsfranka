@@ -12,6 +12,7 @@ const expectedNotA = new BitArray([true, true, false, false])
 const expectedXor = new BitArray([false, true, true, false])
 const expectedStringA = '0011'
 const expectedC = new BitArray([true, true, false, false, true, true, false, false])
+const expectedCHamming = 4
 const expectedCChanged = new BitArray('11000011')
 
 assert.deepEqual(a.and(b), expectedAnd)
@@ -19,6 +20,7 @@ assert.deepEqual(a.or(b), expectedOr)
 assert.deepEqual(a.not(b), expectedNotA)
 assert.deepEqual(a.xor(b), expectedXor)
 assert.deepEqual(a.toString(), expectedStringA)
+assert.deepEqual(c.hamming(), expectedCHamming)
 assert.deepEqual(c, expectedC)
 
 var cChanged = c.clone()

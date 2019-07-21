@@ -58,7 +58,13 @@ class BitArray extends Array{
 		.map(bit=>bit ? '1' : '0')
 		.join('')
 	}
-
+	
+	hamming(){
+		return this
+		.reduce((accu, bit)=>{
+			return !bit ? accu : accu+1
+		}, 0)
+	}
 }
 
 module.exports = BitArray
