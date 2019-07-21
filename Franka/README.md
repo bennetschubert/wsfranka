@@ -25,7 +25,7 @@ While in locked state the joints of the robot are blocked and therefore wont mov
 
 ### Locking
 ``` node
-frank.lock()
+franka.lock()
 ```
 
 ### Unlocking
